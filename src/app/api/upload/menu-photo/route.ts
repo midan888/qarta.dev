@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { requireTenant } from "@/lib/tenant";
 import { extractMenuFromImage } from "@/lib/ai";
+import { rateLimit } from "@/lib/rate-limit";
 
 const MAX_SIZE = 10 * 1024 * 1024; // 10MB
 const ALLOWED_TYPES = [
@@ -15,6 +16,15 @@ type AllowedType = (typeof ALLOWED_TYPES)[number];
 export async function POST(request: Request) {
   try {
     const tenant = await requireTenant();
+
+    // Rate limit: 10 AI extractions per tenant per hour
+    const { allowed } = rateLimit(`ai-upload:${tenant.id}`, { limit: 10, windowSecs: 3600 });
+    if (!allowed) {
+      return NextResponse.json(
+        { error: "Too many uploads. Please try again later." },
+        { status: 429 }
+      );
+    }
 
     // Plan enforcement: free tier gets 1 AI upload
     if (tenant.plan === "free" && (tenant.aiUploadsUsed ?? 0) >= 1) {

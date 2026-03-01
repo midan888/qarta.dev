@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
 import { tenants } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
+import { MobileNav } from "@/components/dashboard/MobileNav";
 
 const navItems = [
   { href: "/menu", label: "Menu", icon: "M4 6h16M4 12h16M4 18h16" },
@@ -37,7 +38,7 @@ export default async function DashboardLayout({
   return (
     <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar */}
-      <aside className="hidden w-64 border-r border-gray-200 bg-white lg:block">
+      <aside className="hidden w-64 shrink-0 border-r border-gray-200 bg-white lg:block">
         <div className="flex h-16 items-center border-b border-gray-200 px-6">
           <Link href="/menu" className="text-lg font-bold text-gray-900">
             {process.env.NEXT_PUBLIC_APP_NAME || "MenuForYou"}
@@ -82,40 +83,17 @@ export default async function DashboardLayout({
         </div>
       </aside>
 
-      {/* Mobile header */}
-      <div className="flex flex-1 flex-col">
+      {/* Mobile header + Main content */}
+      <div className="flex flex-1 flex-col overflow-x-hidden">
         <header className="flex h-16 items-center justify-between border-b border-gray-200 bg-white px-4 lg:hidden">
           <Link href="/menu" className="text-lg font-bold text-gray-900">
             {process.env.NEXT_PUBLIC_APP_NAME || "MenuForYou"}
           </Link>
-          <nav className="flex items-center gap-2">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="rounded-lg p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-                title={item.label}
-              >
-                <svg
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.5}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d={item.icon}
-                  />
-                </svg>
-              </Link>
-            ))}
-          </nav>
+          <MobileNav items={navItems} />
         </header>
 
         {/* Main content */}
-        <main className="flex-1 p-6">{children}</main>
+        <main className="flex-1 p-4 sm:p-6">{children}</main>
       </div>
     </div>
   );

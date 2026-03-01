@@ -140,8 +140,49 @@ export default async function PublicMenuPage({
     bistro: BistroTheme,
   }[tenant.themeId] || ModernTheme;
 
+  // Structured data (JSON-LD) for Restaurant schema
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    name: tenant.name,
+    ...(tenant.description ? { description: tenant.description } : {}),
+    ...(tenant.address ? { address: { "@type": "PostalAddress", streetAddress: tenant.address } } : {}),
+    ...(tenant.phone ? { telephone: tenant.phone } : {}),
+    ...(tenant.logoUrl ? { image: tenant.logoUrl } : {}),
+    url: `${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/r/${slug}`,
+    hasMenu: {
+      "@type": "Menu",
+      hasMenuSection: categoryList
+        .filter((c) => c.menuId === currentMenuId)
+        .map((cat) => ({
+          "@type": "MenuSection",
+          name: cat.name,
+          hasMenuItem: itemList
+            .filter((i) => i.categoryId === cat.id && i.isAvailable)
+            .map((item) => ({
+              "@type": "MenuItem",
+              name: item.name,
+              ...(item.description ? { description: item.description } : {}),
+              ...(item.price
+                ? {
+                    offers: {
+                      "@type": "Offer",
+                      price: item.price,
+                      priceCurrency: item.currency || "USD",
+                    },
+                  }
+                : {}),
+            })),
+        })),
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <LanguageSwitcher
         enabledLanguages={enabledLanguages}
         currentLanguage={currentLanguage}

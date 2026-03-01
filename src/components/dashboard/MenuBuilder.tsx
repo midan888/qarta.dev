@@ -19,6 +19,7 @@ import {
 import type { Menu, Category, Item } from "@/types";
 import { CategoryCard } from "./CategoryCard";
 import { ItemFormModal } from "./ItemFormModal";
+import { useToast } from "@/components/ui/Toaster";
 
 interface MenuBuilderProps {
   initialMenus: Menu[];
@@ -42,6 +43,7 @@ export function MenuBuilder({
   // Item editing modal
   const [editingItem, setEditingItem] = useState<Item | null>(null);
   const [addingToCategoryId, setAddingToCategoryId] = useState<string | null>(null);
+  const { toast } = useToast();
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
@@ -66,14 +68,23 @@ export function MenuBuilder({
     setSaveStatus("saving");
     try {
       const res = await fetch(url, options);
-      if (!res.ok) throw new Error("API error");
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        const msg = body.error || "Something went wrong";
+        toast(msg, "error");
+        setSaveStatus("idle");
+        throw new Error(msg);
+      }
       const data = await res.json();
       setSaveStatus("saved");
       setTimeout(() => setSaveStatus("idle"), 1500);
       return data;
-    } catch {
+    } catch (err) {
       setSaveStatus("idle");
-      throw new Error("Save failed");
+      if (err instanceof Error && err.message !== "Save failed") {
+        toast(err.message, "error");
+      }
+      throw err;
     }
   }
 

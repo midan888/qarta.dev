@@ -130,7 +130,7 @@ export function SettingsForm({ tenant }: SettingsFormProps) {
                 className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
               />
             </div>
-            <div className="flex gap-4">
+            <div className="flex flex-col gap-4 sm:flex-row">
               <div className="flex-1">
                 <label htmlFor="s-addr" className="block text-sm font-medium text-gray-700">
                   Address
@@ -143,7 +143,7 @@ export function SettingsForm({ tenant }: SettingsFormProps) {
                   className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-900"
                 />
               </div>
-              <div className="w-40">
+              <div className="sm:w-40">
                 <label htmlFor="s-phone" className="block text-sm font-medium text-gray-700">
                   Phone
                 </label>

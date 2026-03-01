@@ -3,9 +3,21 @@ import bcrypt from 'bcryptjs';
 import { eq } from 'drizzle-orm';
 import { db } from '@/lib/db';
 import { users } from '@/lib/db/schema';
+import { sendWelcomeEmail } from '@/lib/email';
+import { rateLimit } from '@/lib/rate-limit';
 
 export async function POST(request: Request) {
   try {
+    // Rate limit: 5 registrations per IP per 15 minutes
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+    const { allowed } = rateLimit(`register:${ip}`, { limit: 5, windowSecs: 900 });
+    if (!allowed) {
+      return NextResponse.json(
+        { error: 'Too many attempts. Please try again later.' },
+        { status: 429 }
+      );
+    }
+
     const { name, email, password } = await request.json();
 
     if (!email || !password) {
@@ -41,6 +53,9 @@ export async function POST(request: Request) {
       email,
       passwordHash,
     });
+
+    // Send welcome email (fire-and-forget)
+    sendWelcomeEmail(email, name).catch(() => {});
 
     return NextResponse.json({ success: true }, { status: 201 });
   } catch (error) {

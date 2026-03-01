@@ -9,6 +9,7 @@ import {
 } from "@/lib/db/schema";
 import { eq, and } from "drizzle-orm";
 import { batchTranslate } from "@/lib/translate";
+import { rateLimit } from "@/lib/rate-limit";
 
 // GET /api/translate?lang=xx — list translations for a language
 export async function GET(request: Request) {
@@ -41,6 +42,16 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   try {
     const tenant = await requireTenant();
+
+    // Rate limit: 20 translation requests per tenant per hour
+    const { allowed } = rateLimit(`translate:${tenant.id}`, { limit: 20, windowSecs: 3600 });
+    if (!allowed) {
+      return NextResponse.json(
+        { error: "Too many translation requests. Please try again later." },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
     const { language } = body as { language: string };
 

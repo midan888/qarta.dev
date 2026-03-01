@@ -4,10 +4,21 @@ import { stripe, PLANS } from "@/lib/stripe";
 import { db } from "@/lib/db";
 import { tenants } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
+import { rateLimit } from "@/lib/rate-limit";
 
 export async function POST(request: Request) {
   try {
     const tenant = await requireTenant();
+
+    // Rate limit: 10 checkout attempts per tenant per hour
+    const { allowed } = rateLimit(`checkout:${tenant.id}`, { limit: 10, windowSecs: 3600 });
+    if (!allowed) {
+      return NextResponse.json(
+        { error: "Too many attempts. Please try again later." },
+        { status: 429 }
+      );
+    }
+
     const { plan } = (await request.json()) as { plan: "pro" | "business" };
 
     if (!plan || !(plan in PLANS)) {
