@@ -23,19 +23,47 @@ export function DarkTheme({
   const accent = tenant.accentColor || "#C8A064";
 
   return (
+    <div className="dark-theme-bg">
     <div
       style={{ "--accent": accent } as React.CSSProperties}
       className="dark-theme"
     >
       <style>{`
+        .dark-theme-bg {
+          background: #0A0A0A;
+          min-height: 100vh;
+        }
         .dark-theme {
           font-family: 'DM Sans', system-ui, sans-serif;
-          background: #0A0A0A;
+          background: linear-gradient(170deg, #0F0F0F 0%, #0A0A0A 20%, #080808 50%, #0D0B0F 100%);
           color: #F5F5F5;
           min-height: 100vh;
           max-width: 480px;
           margin: 0 auto;
           padding-bottom: 48px;
+          position: relative;
+          overflow: hidden;
+        }
+        .dark-theme::before {
+          content: '';
+          position: absolute;
+          top: -80px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 400px;
+          height: 400px;
+          background: radial-gradient(circle, color-mix(in srgb, var(--accent) 15%, transparent), transparent 60%);
+          pointer-events: none;
+        }
+        .dark-theme::after {
+          content: '';
+          position: absolute;
+          bottom: 50px;
+          right: -100px;
+          width: 300px;
+          height: 300px;
+          background: radial-gradient(circle, color-mix(in srgb, var(--accent) 6%, transparent), transparent 60%);
+          pointer-events: none;
         }
         .dark-theme h1, .dark-theme h2, .dark-theme h3 {
           font-family: 'Playfair Display', Georgia, serif;
@@ -43,25 +71,44 @@ export function DarkTheme({
         .dark-theme .price {
           font-family: 'Space Mono', monospace;
         }
+        .dark-item-card {
+          background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+          border: 1px solid rgba(255,255,255,0.06);
+          border-radius: 14px;
+          padding: 14px;
+          transition: border-color 0.2s, box-shadow 0.2s;
+          backdrop-filter: blur(8px);
+        }
+        .dark-item-card:hover {
+          border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+          box-shadow: 0 4px 20px color-mix(in srgb, var(--accent) 8%, transparent);
+        }
       `}</style>
 
-      {/* Accent line */}
-      <div className="h-1" style={{ background: accent }} />
+      {/* Accent gradient bar */}
+      <div className="h-1" style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }} />
 
       {/* Header */}
-      <header className="px-6 pt-8 pb-6 text-center">
+      <header className="relative px-6 pt-8 pb-6 text-center">
         {tenant.logoUrl && (
-          <img
-            src={tenant.logoUrl}
-            alt={tenant.name}
-            className="mx-auto mb-4 h-16 w-16 rounded-full object-cover ring-2"
-            style={{ borderColor: accent }}
-          />
+          <div className="mx-auto mb-4 h-20 w-20 overflow-hidden rounded-full p-0.5" style={{ background: `linear-gradient(135deg, ${accent}, color-mix(in srgb, ${accent} 30%, black))` }}>
+            <img
+              src={tenant.logoUrl}
+              alt={tenant.name}
+              className="h-full w-full rounded-full object-cover"
+            />
+          </div>
         )}
         <h1 className="text-3xl font-bold tracking-tight">{tenant.name}</h1>
         {tenant.description && (
-          <p className="mt-2 text-sm text-white/50">{tenant.description}</p>
+          <p className="mt-2 text-sm text-white/40">{tenant.description}</p>
         )}
+        {/* Decorative accent line */}
+        <div className="mt-4 flex items-center justify-center gap-3">
+          <div className="h-px w-16" style={{ background: `linear-gradient(to right, transparent, ${accent}60)` }} />
+          <div className="h-2 w-2 rounded-full" style={{ background: accent, boxShadow: `0 0 10px ${accent}60` }} />
+          <div className="h-px w-16" style={{ background: `linear-gradient(to left, transparent, ${accent}60)` }} />
+        </div>
       </header>
 
       {/* Menu tabs */}
@@ -71,15 +118,11 @@ export function DarkTheme({
             <a
               key={menu.id}
               href={`?menu=${menu.id}${currentLanguage !== "en" ? `&lang=${currentLanguage}` : ""}`}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                menu.id === activeMenu?.id
-                  ? "text-black"
-                  : "border border-white/20 text-white/60 hover:border-white/40"
-              }`}
+              className="rounded-full px-4 py-2 text-sm font-medium transition-all"
               style={
                 menu.id === activeMenu?.id
-                  ? { background: accent }
-                  : undefined
+                  ? { background: `linear-gradient(135deg, ${accent}, color-mix(in srgb, ${accent} 70%, black))`, color: "#0A0A0A", boxShadow: `0 4px 16px color-mix(in srgb, ${accent} 30%, transparent)` }
+                  : { border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.5)" }
               }
             >
               {menu.name}
@@ -89,64 +132,67 @@ export function DarkTheme({
       )}
 
       {/* Categories & Items */}
-      <main className="px-6">
+      <main className="relative px-6">
         {menuCategories.map((category) => {
           const catItems = getItems(category.id);
           if (catItems.length === 0) return null;
           return (
             <section key={category.id} className="mb-10">
               <div className="mb-4 flex items-center gap-3">
-                <div className="h-px flex-1" style={{ background: `${accent}40` }} />
-                <h2 className="text-lg font-bold uppercase tracking-widest" style={{ color: accent }}>
+                <div className="h-px flex-1" style={{ background: `linear-gradient(to right, ${accent}50, transparent)` }} />
+                <h2 className="text-lg font-bold uppercase tracking-widest" style={{ color: accent, textShadow: `0 0 20px ${accent}30` }}>
                   {t(translations, "category", category.id, "name", category.name, currentLanguage)}
                 </h2>
-                <div className="h-px flex-1" style={{ background: `${accent}40` }} />
+                <div className="h-px flex-1" style={{ background: `linear-gradient(to left, ${accent}50, transparent)` }} />
               </div>
               {category.description && (
-                <p className="mb-4 text-center text-sm text-white/40">
+                <p className="mb-4 text-center text-sm text-white/30">
                   {t(translations, "category", category.id, "description", category.description, currentLanguage)}
                 </p>
               )}
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {catItems.map((item) => {
                   const badges = (item.badges as string[]) || [];
                   return (
-                    <div key={item.id} className="flex gap-4">
-                      {item.imageUrl && (
-                        <img
-                          src={item.imageUrl}
-                          alt={item.name}
-                          className="h-20 w-20 flex-shrink-0 rounded-lg object-cover"
-                          loading="lazy"
-                        />
-                      )}
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-start justify-between gap-2">
-                          <h3 className="text-base font-semibold">
-                            {t(translations, "item", item.id, "name", item.name, currentLanguage)}
-                          </h3>
-                          <span className="price flex-shrink-0 text-sm" style={{ color: accent }}>
-                            {item.currency} {Number(item.price).toFixed(2)}
-                          </span>
-                        </div>
-                        {item.description && (
-                          <p className="mt-1 text-sm leading-relaxed text-white/50">
-                            {t(translations, "item", item.id, "description", item.description, currentLanguage)}
-                          </p>
+                    <div key={item.id} className="dark-item-card">
+                      <div className="flex gap-4">
+                        {item.imageUrl && (
+                          <img
+                            src={item.imageUrl}
+                            alt={item.name}
+                            className="h-20 w-20 shrink-0 rounded-xl object-cover"
+                            loading="lazy"
+                            style={{ boxShadow: `0 2px 12px ${accent}15` }}
+                          />
                         )}
-                        {badges.length > 0 && (
-                          <div className="mt-2 flex flex-wrap gap-1">
-                            {badges.map((badge) => (
-                              <span
-                                key={badge}
-                                className="rounded-full border px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider"
-                                style={{ borderColor: `${accent}40`, color: accent }}
-                              >
-                                {badge.replace(/_/g, " ")}
-                              </span>
-                            ))}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-start justify-between gap-2">
+                            <h3 className="text-base font-semibold">
+                              {t(translations, "item", item.id, "name", item.name, currentLanguage)}
+                            </h3>
+                            <span className="price shrink-0 text-sm" style={{ color: accent, textShadow: `0 0 8px ${accent}40` }}>
+                              {item.currency} {Number(item.price).toFixed(2)}
+                            </span>
                           </div>
-                        )}
+                          {item.description && (
+                            <p className="mt-1 text-sm leading-relaxed text-white/40">
+                              {t(translations, "item", item.id, "description", item.description, currentLanguage)}
+                            </p>
+                          )}
+                          {badges.length > 0 && (
+                            <div className="mt-2 flex flex-wrap gap-1.5">
+                              {badges.map((badge) => (
+                                <span
+                                  key={badge}
+                                  className="rounded-full px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider"
+                                  style={{ background: `color-mix(in srgb, ${accent} 12%, transparent)`, color: accent, border: `1px solid ${accent}25` }}
+                                >
+                                  {badge.replace(/_/g, " ")}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                   );
@@ -156,6 +202,7 @@ export function DarkTheme({
           );
         })}
       </main>
+    </div>
     </div>
   );
 }
