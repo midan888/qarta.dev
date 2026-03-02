@@ -41,7 +41,7 @@ jobs:
           host: ${{ secrets.LIGHTSAIL_HOST }}
           username: ${{ secrets.LIGHTSAIL_USER }}
           key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
-          source: docker-compose.prod.yml
+          source: "docker-compose.prod.yml,Caddyfile"
           target: ~/qarta-dev
           overwrite: true
 
@@ -69,6 +69,9 @@ jobs:
 
             # Run database migrations
             docker compose exec -T app npx drizzle-kit migrate
+
+            # Reload Caddy config (zero-downtime)
+            docker compose exec -T caddy caddy reload --config /etc/caddy/Caddyfile
 
             # Clean up old images
             docker image prune -f
