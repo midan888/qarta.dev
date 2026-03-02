@@ -35,6 +35,16 @@ jobs:
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
+      - name: Copy docker-compose to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.LIGHTSAIL_HOST }}
+          username: ${{ secrets.LIGHTSAIL_USER }}
+          key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
+          source: docker-compose.prod.yml
+          target: ~/qarta-dev
+          overwrite: true
+
       - name: Deploy to Lightsail
         uses: appleboy/ssh-action@v1
         with:
@@ -44,18 +54,21 @@ jobs:
           script: |
             cd ~/qarta-dev
 
+            # Use prod compose as default
+            mv -f docker-compose.prod.yml docker-compose.yml
+
             # Login to GHCR
             echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
             # Pull latest image and restart
-            docker compose -f docker-compose.prod.yml pull
-            docker compose -f docker-compose.prod.yml up -d
+            docker compose pull
+            docker compose up -d
 
             # Wait for app to be healthy
             sleep 5
 
             # Run database migrations
-            docker compose -f docker-compose.prod.yml exec -T app npx drizzle-kit migrate
+            docker compose exec -T app npx drizzle-kit migrate
 
             # Clean up old images
             docker image prune -f
