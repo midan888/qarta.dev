@@ -18,6 +18,7 @@ export function EmailVerificationBanner({ email }: { email: string }) {
         body: JSON.stringify({ email }),
       });
       setSent(true);
+      setTimeout(() => setSent(false), 5000);
     } finally {
       setSending(false);
     }

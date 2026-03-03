@@ -9,7 +9,7 @@ import { rateLimit } from '@/lib/rate-limit';
 export async function POST(request: Request) {
   try {
     const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
-    const { allowed } = rateLimit(`resend-verification:${ip}`, { limit: 3, windowSecs: 900 });
+    const { allowed } = rateLimit(`resend-verification:${ip}`, { limit: 10, windowSecs: 900 });
     if (!allowed) {
       return NextResponse.json(
         { error: 'Too many attempts. Please try again later.' },
