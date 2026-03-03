@@ -22,6 +22,7 @@ export const users = pgTable('users', {
   passwordHash: text('password_hash'),
   emailVerified: timestamp('email_verified', { mode: 'date' }),
   image: text('image'),
+  role: varchar('role', { length: 20 }).notNull().default('user'),
   createdAt: timestamp('created_at', { mode: 'date' }).defaultNow().notNull(),
   updatedAt: timestamp('updated_at', { mode: 'date' }).defaultNow().notNull(),
 });

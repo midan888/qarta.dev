@@ -29,6 +29,13 @@
       "when": 1772411591861,
       "tag": "0003_brainy_black_tom",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1772525376171,
+      "tag": "0004_freezing_pyro",
+      "breakpoints": true
     }
   ]
 }

@@ -58,15 +58,30 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger }) {
       if (user) {
         token.id = user.id;
+        // Fetch role from DB on sign-in
+        const dbUser = await db.query.users.findFirst({
+          where: eq(users.id, user.id!),
+          columns: { role: true },
+        });
+        token.role = dbUser?.role ?? 'user';
+      }
+      // Refresh role on session update
+      if (trigger === 'update' && token.id) {
+        const dbUser = await db.query.users.findFirst({
+          where: eq(users.id, token.id as string),
+          columns: { role: true },
+        });
+        token.role = dbUser?.role ?? 'user';
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user && token.id) {
         session.user.id = token.id as string;
+        session.user.role = (token.role as string) ?? 'user';
       }
       return session;
     },
