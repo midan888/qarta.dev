@@ -40,10 +40,22 @@ export default async function DashboardLayout({
     <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar */}
       <aside className="hidden w-64 shrink-0 border-r border-gray-200 bg-white lg:block">
-        <div className="flex h-16 items-center border-b border-gray-200 px-6">
+        <div className="flex h-16 items-center justify-between border-b border-gray-200 px-6">
           <Link href="/menu" className="text-lg font-bold text-gray-900">
             {process.env.NEXT_PUBLIC_APP_NAME || "qarta.dev"}
           </Link>
+          <a
+            href={tenant.customDomain && tenant.domainVerified ? `https://${tenant.customDomain}` : `/r/${tenant.slug}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 rounded-lg border border-gray-200 px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900"
+            title="Preview menu"
+          >
+            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+            Preview
+          </a>
         </div>
         <nav className="mt-4 space-y-1 px-3">
           {navItems.map((item) => (
@@ -91,7 +103,21 @@ export default async function DashboardLayout({
           <Link href="/menu" className="text-lg font-bold text-gray-900">
             {process.env.NEXT_PUBLIC_APP_NAME || "qarta.dev"}
           </Link>
-          <MobileNav items={navItems} />
+          <div className="flex items-center gap-2">
+            <a
+              href={tenant.customDomain && tenant.domainVerified ? `https://${tenant.customDomain}` : `/r/${tenant.slug}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 rounded-lg border border-gray-200 px-2.5 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:bg-gray-50 hover:text-gray-900"
+              title="Preview menu"
+            >
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+              Preview
+            </a>
+            <MobileNav items={navItems} />
+          </div>
         </header>
 
         {/* Main content */}
