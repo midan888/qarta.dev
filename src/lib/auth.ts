@@ -1,14 +1,20 @@
 import NextAuth from 'next-auth';
+import type { AdapterAccountType } from 'next-auth/adapters';
 import { DrizzleAdapter } from '@auth/drizzle-adapter';
 import Google from 'next-auth/providers/google';
 import Credentials from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
-import { eq } from 'drizzle-orm';
+import { eq, and } from 'drizzle-orm';
 import { db } from './db';
-import { users } from './db/schema';
+import { users, accounts, sessions, verificationTokens } from './db/schema';
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  adapter: DrizzleAdapter(db),
+  adapter: DrizzleAdapter(db, {
+    usersTable: users,
+    accountsTable: accounts,
+    sessionsTable: sessions,
+    verificationTokensTable: verificationTokens,
+  }),
   session: {
     strategy: 'jwt',
   },
@@ -58,6 +64,44 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   callbacks: {
+    async signIn({ user, account }) {
+      if (account?.provider === 'google' && user.email) {
+        const existingUser = await db.query.users.findFirst({
+          where: eq(users.email, user.email),
+        });
+
+        if (existingUser) {
+          // Check if this Google account is already linked
+          const existingAccount = await db.query.accounts.findFirst({
+            where: and(
+              eq(accounts.provider, 'google'),
+              eq(accounts.userId, existingUser.id)
+            ),
+          });
+
+          if (!existingAccount) {
+            // Link Google account to the existing user
+            await db.insert(accounts).values({
+              userId: existingUser.id,
+              type: account.type as AdapterAccountType,
+              provider: account.provider,
+              providerAccountId: account.providerAccountId,
+              refresh_token: account.refresh_token ?? null,
+              access_token: account.access_token ?? null,
+              expires_at: account.expires_at ?? null,
+              token_type: account.token_type ?? null,
+              scope: account.scope ?? null,
+              id_token: account.id_token ?? null,
+              session_state: account.session_state as string ?? null,
+            });
+          }
+
+          // Override the user id so the JWT callback gets the correct one
+          user.id = existingUser.id;
+        }
+      }
+      return true;
+    },
     async jwt({ token, user, trigger }) {
       if (user) {
         token.id = user.id;
