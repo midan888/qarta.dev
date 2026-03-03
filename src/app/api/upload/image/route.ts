@@ -1,16 +1,13 @@
 import { NextResponse } from 'next/server';
 import { requireTenant } from '@/lib/tenant';
 import sharp from 'sharp';
-import { writeFile, mkdir } from 'fs/promises';
-import path from 'path';
 import crypto from 'crypto';
 import { db } from '@/lib/db';
 import { items } from '@/lib/db/schema';
-import { eq, isNotNull } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 import { PLAN_LIMITS } from '@/lib/constants';
 import type { PlanType } from '@/lib/constants';
-
-const UPLOAD_DIR = path.join(process.cwd(), 'public', 'uploads');
+import { uploadToS3 } from '@/lib/s3';
 
 export async function POST(request: Request) {
   try {
@@ -71,18 +68,14 @@ export async function POST(request: Request) {
       .webp({ quality: 80 })
       .toBuffer();
 
-    // Save locally (replace with S3 in production)
-    const tenantDir = path.join(UPLOAD_DIR, tenant.id, type);
-    await mkdir(tenantDir, { recursive: true });
+    // Upload to S3
+    const mainKey = `${tenant.id}/${type}/${id}.webp`;
+    const thumbKey = `${tenant.id}/${type}/${id}_thumb.webp`;
 
-    const filename = `${id}.webp`;
-    const thumbFilename = `${id}_thumb.webp`;
-
-    await writeFile(path.join(tenantDir, filename), processed);
-    await writeFile(path.join(tenantDir, thumbFilename), thumbnail);
-
-    const imageUrl = `/uploads/${tenant.id}/${type}/${filename}`;
-    const thumbnailUrl = `/uploads/${tenant.id}/${type}/${thumbFilename}`;
+    const [imageUrl, thumbnailUrl] = await Promise.all([
+      uploadToS3(processed, mainKey, 'image/webp'),
+      uploadToS3(thumbnail, thumbKey, 'image/webp'),
+    ]);
 
     return NextResponse.json({ imageUrl, thumbnailUrl }, { status: 201 });
   } catch (error) {
