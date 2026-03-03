@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import type { Tenant } from "@/types";
 import { THEMES, SUPPORTED_LANGUAGES, SUPPORTED_CURRENCIES } from "@/lib/constants";
 
@@ -406,23 +406,8 @@ export function SettingsForm({ tenant }: SettingsFormProps) {
           </div>
         </section>
 
-        {/* Public Menu Link */}
-        <section>
-          <h2 className="text-sm font-semibold text-gray-900">Public Menu Link</h2>
-          <div className="mt-2 flex items-center gap-2 rounded-lg bg-gray-50 px-3 py-2">
-            <span className="flex-1 truncate text-sm text-gray-700">
-              {process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/r/{tenant.slug}
-            </span>
-            <a
-              href={`/r/${tenant.slug}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs font-medium text-gray-900 hover:underline"
-            >
-              Preview
-            </a>
-          </div>
-        </section>
+        {/* Public Menu Link & Slug */}
+        <SlugEditor tenant={tenant} />
         {/* Custom Domain */}
         <CustomDomainSection
           customDomain={tenant.customDomain}
@@ -431,6 +416,253 @@ export function SettingsForm({ tenant }: SettingsFormProps) {
         />
       </div>
     </div>
+  );
+}
+
+function SlugEditor({ tenant }: { tenant: Tenant }) {
+  const [slug, setSlug] = useState(tenant.slug);
+  const [editing, setEditing] = useState(false);
+  const [checking, setChecking] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [available, setAvailable] = useState<boolean | null>(null);
+  const [reason, setReason] = useState("");
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [loadingSuggestions, setLoadingSuggestions] = useState(false);
+  const [error, setError] = useState("");
+  const [saved, setSaved] = useState(false);
+  const [currentSlug, setCurrentSlug] = useState(tenant.slug);
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const checkAvailability = useCallback(
+    (value: string) => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+      setSuggestions([]);
+      setError("");
+
+      if (!value || value === currentSlug) {
+        setAvailable(null);
+        setReason("");
+        setChecking(false);
+        return;
+      }
+
+      setChecking(true);
+      debounceRef.current = setTimeout(async () => {
+        try {
+          const res = await fetch(
+            `/api/slug/check?slug=${encodeURIComponent(value)}`
+          );
+          const data = await res.json();
+          setAvailable(data.available ?? false);
+          setReason(data.reason || "");
+          if (data.current) setAvailable(null);
+        } catch {
+          setAvailable(null);
+        } finally {
+          setChecking(false);
+        }
+      }, 400);
+    },
+    [currentSlug]
+  );
+
+  function handleSlugChange(value: string) {
+    const cleaned = value
+      .toLowerCase()
+      .replace(/[^a-z0-9-]/g, "")
+      .replace(/-+/g, "-")
+      .slice(0, 60);
+    setSlug(cleaned);
+    checkAvailability(cleaned);
+  }
+
+  async function handleSuggest() {
+    setLoadingSuggestions(true);
+    try {
+      const res = await fetch("/api/slug/suggest", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ slug, restaurantName: tenant.name }),
+      });
+      const data = await res.json();
+      setSuggestions(data.suggestions || []);
+    } catch {
+      setSuggestions([]);
+    } finally {
+      setLoadingSuggestions(false);
+    }
+  }
+
+  function selectSuggestion(s: string) {
+    setSlug(s);
+    setSuggestions([]);
+    checkAvailability(s);
+  }
+
+  async function handleSave() {
+    if (!slug || slug === currentSlug) return;
+    setSaving(true);
+    setError("");
+    try {
+      const res = await fetch("/api/settings", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ slug }),
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Failed to save slug");
+      }
+      setCurrentSlug(slug);
+      setEditing(false);
+      setAvailable(null);
+      setSaved(true);
+      setTimeout(() => setSaved(false), 2000);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to save");
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  function handleCancel() {
+    setSlug(currentSlug);
+    setEditing(false);
+    setAvailable(null);
+    setReason("");
+    setSuggestions([]);
+    setError("");
+  }
+
+  const baseUrl =
+    process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+
+  return (
+    <section>
+      <h2 className="text-sm font-semibold text-gray-900">Public Menu Link</h2>
+
+      {!editing ? (
+        <div className="mt-2 space-y-2">
+          <div className="flex items-center gap-2 rounded-lg bg-gray-50 px-3 py-2">
+            <span className="flex-1 truncate text-sm text-gray-700">
+              {baseUrl}/r/{currentSlug}
+            </span>
+            <a
+              href={`/r/${currentSlug}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-medium text-gray-900 hover:underline"
+            >
+              Preview
+            </a>
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setEditing(true)}
+              className="text-xs font-medium text-gray-500 hover:text-gray-900"
+            >
+              Change slug
+            </button>
+            {saved && <span className="text-xs text-green-600">Slug updated</span>}
+          </div>
+        </div>
+      ) : (
+        <div className="mt-2 space-y-3">
+          <div>
+            <div className="flex items-center rounded-lg border border-gray-300 bg-white text-sm shadow-sm focus-within:border-gray-900 focus-within:ring-1 focus-within:ring-gray-900">
+              <span className="shrink-0 pl-3 text-gray-400">{baseUrl}/r/</span>
+              <input
+                type="text"
+                value={slug}
+                onChange={(e) => handleSlugChange(e.target.value)}
+                className="w-full border-0 bg-transparent py-2 pr-3 text-sm text-gray-900 focus:outline-none focus:ring-0"
+                placeholder="your-restaurant"
+                autoFocus
+              />
+            </div>
+
+            {/* Status indicator */}
+            <div className="mt-1.5 flex items-center gap-1.5 text-xs">
+              {checking && (
+                <span className="text-gray-400">Checking...</span>
+              )}
+              {!checking && available === true && (
+                <span className="flex items-center gap-1 text-green-600">
+                  <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  Available
+                </span>
+              )}
+              {!checking && available === false && (
+                <span className="flex items-center gap-1 text-red-500">
+                  <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                  {reason || "Not available"}
+                </span>
+              )}
+            </div>
+          </div>
+
+          {/* AI suggestions when unavailable */}
+          {available === false && (
+            <div>
+              {suggestions.length === 0 && !loadingSuggestions && (
+                <button
+                  type="button"
+                  onClick={handleSuggest}
+                  className="text-xs font-medium text-indigo-600 hover:text-indigo-800"
+                >
+                  Suggest alternatives with AI
+                </button>
+              )}
+              {loadingSuggestions && (
+                <p className="text-xs text-gray-400">Generating suggestions...</p>
+              )}
+              {suggestions.length > 0 && (
+                <div className="flex flex-wrap gap-1.5">
+                  {suggestions.map((s) => (
+                    <button
+                      key={s}
+                      type="button"
+                      onClick={() => selectSuggestion(s)}
+                      className="rounded-full bg-indigo-50 px-2.5 py-1 text-xs font-medium text-indigo-700 hover:bg-indigo-100"
+                    >
+                      {s}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {error && (
+            <p className="text-xs text-red-600">{error}</p>
+          )}
+
+          {/* Actions */}
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={handleSave}
+              disabled={saving || !available || slug === currentSlug}
+              className="rounded-lg bg-gray-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-gray-800 disabled:opacity-50"
+            >
+              {saving ? "Saving..." : "Save Slug"}
+            </button>
+            <button
+              type="button"
+              onClick={handleCancel}
+              className="rounded-lg px-3 py-1.5 text-xs font-medium text-gray-500 hover:text-gray-900"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
+    </section>
   );
 }
 
