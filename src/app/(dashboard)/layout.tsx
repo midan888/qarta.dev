@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 import { tenants } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { MobileNav } from "@/components/dashboard/MobileNav";
+import { SignOutButton } from "@/components/dashboard/SignOutButton";
 
 const navItems = [
   { href: "/menu", label: "Menu", icon: "M4 6h16M4 12h16M4 18h16" },
@@ -79,6 +80,7 @@ export default async function DashboardLayout({
                 {session.user.email}
               </p>
             </div>
+            <SignOutButton />
           </div>
         </div>
       </aside>

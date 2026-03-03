@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { signOut } from "next-auth/react";
 
 interface NavItem {
   href: string;
@@ -75,6 +76,30 @@ export function MobileNav({ items }: { items: NavItem[] }) {
                   {item.label}
                 </Link>
               ))}
+              <div className="border-t border-gray-100 mt-1 pt-1">
+                <button
+                  onClick={() => {
+                    setOpen(false);
+                    signOut({ redirectTo: "/login" });
+                  }}
+                  className="flex w-full items-center gap-3 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                >
+                  <svg
+                    className="h-5 w-5 text-gray-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={1.5}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
+                    />
+                  </svg>
+                  Sign out
+                </button>
+              </div>
             </div>
           </nav>
         </>
