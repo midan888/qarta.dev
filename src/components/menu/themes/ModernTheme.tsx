@@ -97,6 +97,23 @@ export function ModernTheme({
         }
       `}</style>
 
+      {/* Cover image */}
+      {tenant.coverImageUrl && (
+        <div className="relative h-52 overflow-hidden">
+          <img
+            src={tenant.coverImageUrl}
+            alt=""
+            className="h-full w-full object-cover"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: "linear-gradient(to top, #F8F9FC 5%, rgba(248,249,252,0.6) 40%, rgba(248,249,252,0.2) 100%)",
+            }}
+          />
+        </div>
+      )}
+
       {/* Header */}
       <header className="relative flex items-center gap-4 px-6 pt-8 pb-6">
         {tenant.logoUrl ? (

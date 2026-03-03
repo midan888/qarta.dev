@@ -92,15 +92,31 @@ export function BistroTheme({
         }
       `}</style>
 
-      {/* Ornamental top border with gradient */}
-      <div className="h-1.5" style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }} />
-
-      {/* Top ornament */}
-      <div className="flex items-center justify-center gap-3 px-8 pt-6">
-        <div className="h-px flex-1" style={{ background: `linear-gradient(to right, transparent, ${accent}80)` }} />
-        <span style={{ color: accent, textShadow: `0 0 10px ${accent}30` }} className="text-xl">&#9830;</span>
-        <div className="h-px flex-1" style={{ background: `linear-gradient(to left, transparent, ${accent}80)` }} />
-      </div>
+      {/* Cover image or ornamental top border */}
+      {tenant.coverImageUrl ? (
+        <div className="relative h-52 overflow-hidden">
+          <img
+            src={tenant.coverImageUrl}
+            alt=""
+            className="h-full w-full object-cover"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: "linear-gradient(to top, #F5EDE3 5%, rgba(245,237,227,0.6) 40%, rgba(245,237,227,0.2) 100%)",
+            }}
+          />
+        </div>
+      ) : (
+        <>
+          <div className="h-1.5" style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }} />
+          <div className="flex items-center justify-center gap-3 px-8 pt-6">
+            <div className="h-px flex-1" style={{ background: `linear-gradient(to right, transparent, ${accent}80)` }} />
+            <span style={{ color: accent, textShadow: `0 0 10px ${accent}30` }} className="text-xl">&#9830;</span>
+            <div className="h-px flex-1" style={{ background: `linear-gradient(to left, transparent, ${accent}80)` }} />
+          </div>
+        </>
+      )}
 
       {/* Header */}
       <header className="relative px-6 pt-4 pb-4 text-center">

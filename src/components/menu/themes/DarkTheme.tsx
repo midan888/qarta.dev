@@ -95,8 +95,25 @@ export function DarkTheme({
         }
       `}</style>
 
-      {/* Accent gradient bar */}
-      <div className="h-1" style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }} />
+      {/* Cover image */}
+      {tenant.coverImageUrl ? (
+        <div className="relative h-52 overflow-hidden">
+          <img
+            src={tenant.coverImageUrl}
+            alt=""
+            className="h-full w-full object-cover"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: "linear-gradient(to top, #0F0F0F 5%, rgba(15,15,15,0.6) 40%, rgba(15,15,15,0.2) 100%)",
+            }}
+          />
+        </div>
+      ) : (
+        /* Accent gradient bar */
+        <div className="h-1" style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }} />
+      )}
 
       {/* Header */}
       <header className="relative px-6 pt-8 pb-6 text-center">
