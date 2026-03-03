@@ -43,7 +43,7 @@ export async function POST(request: Request) {
         expires,
       });
 
-      sendVerificationEmail(email, token, user.name ?? undefined).catch(() => {});
+      await sendVerificationEmail(email, token, user.name ?? undefined);
     }
 
     return NextResponse.json({ success: true });
