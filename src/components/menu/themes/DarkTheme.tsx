@@ -20,7 +20,17 @@ export function DarkTheme({
       .filter((i) => i.categoryId === categoryId && i.isAvailable)
       .sort((a, b) => a.sortOrder - b.sortOrder);
 
-  const accent = tenant.accentColor || "#C8A064";
+  const rawAccent = tenant.accentColor || "#C8A064";
+  // If accent color is too dark for dark background, use gold fallback
+  const isDarkAccent = (() => {
+    const hex = rawAccent.replace("#", "");
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    // Relative luminance threshold — anything below ~30% brightness is too dark
+    return (r * 299 + g * 587 + b * 114) / 1000 < 80;
+  })();
+  const accent = isDarkAccent ? "#C8A064" : rawAccent;
 
   return (
     <div className="dark-theme-bg">

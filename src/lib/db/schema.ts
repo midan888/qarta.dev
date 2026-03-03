@@ -92,7 +92,7 @@ export const tenants = pgTable(
 
     // Branding
     themeId: varchar('theme_id', { length: 50 }).notNull().default('modern'),
-    accentColor: varchar('accent_color', { length: 7 }).default('#111111'),
+    accentColor: varchar('accent_color', { length: 7 }).default('#6366F1'),
     defaultLanguage: varchar('default_language', { length: 5 }).default('en'),
     enabledLanguages: jsonb('enabled_languages').default(['en']),
     defaultCurrency: varchar('default_currency', { length: 3 }).notNull().default('USD'),
