@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
+import { signOut } from "next-auth/react";
 import type { Tenant } from "@/types";
 import { THEMES, SUPPORTED_LANGUAGES, SUPPORTED_CURRENCIES } from "@/lib/constants";
 
@@ -852,7 +853,7 @@ function DeleteAccountSection() {
         setDeleting(false);
         return;
       }
-      window.location.href = "/";
+      signOut({ redirectTo: "/" });
     } catch {
       setError("Something went wrong");
       setDeleting(false);
