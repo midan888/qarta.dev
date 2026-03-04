@@ -1,6 +1,3 @@
-const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
-
 type HookEvent = 'user.registered' | 'user.verified';
 
 type HookPayload = {
@@ -24,17 +21,26 @@ function formatMessage<E extends HookEvent>(event: E, data: HookPayload[E]): str
 }
 
 async function sendTelegram(text: string) {
-  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return;
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+  if (!token || !chatId) {
+    console.warn('[hooks] TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID not set');
+    return;
+  }
 
-  await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+  const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      chat_id: TELEGRAM_CHAT_ID,
+      chat_id: chatId,
       text,
       parse_mode: 'Markdown',
     }),
   });
+
+  if (!res.ok) {
+    console.error('[hooks] Telegram API error:', res.status, await res.text());
+  }
 }
 
 export async function emitHook<E extends HookEvent>(event: E, data: HookPayload[E]) {
