@@ -4,6 +4,12 @@ import { ClassicTheme } from "@/components/menu/themes/ClassicTheme";
 import { ModernTheme } from "@/components/menu/themes/ModernTheme";
 import { DarkTheme } from "@/components/menu/themes/DarkTheme";
 import { BistroTheme } from "@/components/menu/themes/BistroTheme";
+import { NordicTheme } from "@/components/menu/themes/NordicTheme";
+import { NeonTheme } from "@/components/menu/themes/NeonTheme";
+import { RusticTheme } from "@/components/menu/themes/RusticTheme";
+import { ZenTheme } from "@/components/menu/themes/ZenTheme";
+import { LuxeTheme } from "@/components/menu/themes/LuxeTheme";
+import { VibraTheme } from "@/components/menu/themes/VibraTheme";
 import { getDemoData, VALID_THEMES } from "@/lib/demo-data";
 import type { Metadata } from "next";
 import "@/components/menu/themes/fonts.css";
@@ -15,6 +21,12 @@ const THEME_MAP = {
   modern: ModernTheme,
   dark: DarkTheme,
   bistro: BistroTheme,
+  nordic: NordicTheme,
+  neon: NeonTheme,
+  rustic: RusticTheme,
+  zen: ZenTheme,
+  luxe: LuxeTheme,
+  vibra: VibraTheme,
 } as const;
 
 const THEME_LABELS: Record<string, string> = {
@@ -22,6 +34,12 @@ const THEME_LABELS: Record<string, string> = {
   modern: "Modern",
   dark: "Dark",
   bistro: "Bistro",
+  nordic: "Nordic",
+  neon: "Neon",
+  rustic: "Rustic",
+  zen: "Zen",
+  luxe: "Luxe",
+  vibra: "Vibra",
 };
 
 interface PageProps {

@@ -110,4 +110,10 @@ export const THEMES = [
   { id: 'modern', name: 'Modern', description: 'Clean, contemporary, minimal' },
   { id: 'dark', name: 'Dark', description: 'Moody, bold, premium' },
   { id: 'bistro', name: 'Bistro', description: 'Traditional, charming, European' },
+  { id: 'nordic', name: 'Nordic', description: 'Minimalist, Scandinavian, airy' },
+  { id: 'neon', name: 'Neon', description: 'Electric, cyberpunk, bold' },
+  { id: 'rustic', name: 'Rustic', description: 'Warm, farmhouse, handcrafted' },
+  { id: 'zen', name: 'Zen', description: 'Japanese-inspired, calm, refined' },
+  { id: 'luxe', name: 'Luxe', description: 'Ultra-premium, black & gold' },
+  { id: 'vibra', name: 'Vibra', description: 'Vibrant, street food, bold & fun' },
 ] as const;

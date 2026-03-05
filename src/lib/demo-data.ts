@@ -6,6 +6,12 @@ const ACCENT_COLORS: Record<string, string> = {
   modern: "#111827",
   dark: "#C8A064",
   bistro: "#B8860B",
+  nordic: "#2D6A4F",
+  neon: "#00FF94",
+  rustic: "#8B3A2A",
+  zen: "#C0392B",
+  luxe: "#C9A84C",
+  vibra: "#FF4D2E",
 };
 
 const DEMO_IMAGES = [
@@ -268,4 +274,4 @@ export function getDemoData(themeId: string): ThemeProps {
   };
 }
 
-export const VALID_THEMES = ["classic", "modern", "dark", "bistro"] as const;
+export const VALID_THEMES = ["classic", "modern", "dark", "bistro", "nordic", "neon", "rustic", "zen", "luxe", "vibra"] as const;

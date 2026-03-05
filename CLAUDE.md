@@ -95,7 +95,7 @@ Defined in `src/lib/constants.ts`:
 
 ## Supported Features
 
-- 4 menu themes: classic, modern, dark, bistro
+- 10 menu themes: classic, modern, dark, bistro, nordic, neon, rustic, zen, luxe, vibra
 - 16 languages for AI translation
 - 7 item badges: vegan, vegetarian, gluten-free, spicy, new, chef_pick, popular
 - 7 allergens: gluten, dairy, nuts, eggs, soy, fish, shellfish

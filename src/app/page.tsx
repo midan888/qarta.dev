@@ -27,9 +27,9 @@ const features = [
     textColor: "text-indigo-600",
   },
   {
-    title: "4 Beautiful Themes",
+    title: "10 Beautiful Themes",
     description:
-      "Classic, Modern, Dark, or Bistro — pick a vibe that matches your restaurant. No design skills needed.",
+      "Classic, Neon, Luxe, Nordic and more — pick a vibe that matches your restaurant perfectly. No design skills needed.",
     icon: "M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01",
     color: "from-violet-500 to-violet-600",
     bgLight: "bg-violet-50",
@@ -83,7 +83,7 @@ const plans = [
       "1 menu",
       "20 item images",
       "1 AI upload",
-      "All 4 themes",
+      "All 10 themes",
       "QR code download",
     ],
     cta: "Get Started Free",
@@ -137,7 +137,7 @@ const steps = [
   {
     step: "2",
     title: "Pick a theme",
-    description: "Choose from 4 beautiful designs that match your restaurant.",
+    description: "Choose from 10 beautiful designs that match your restaurant.",
     icon: "M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01",
   },
   {
@@ -259,83 +259,211 @@ export default function HomePage() {
             </a>
           </div>
 
-          {/* Theme preview mockup */}
-          <div id="themes" className="mx-auto mt-16 max-w-3xl">
-            <p className="mb-3 text-center text-sm text-gray-500">Click a theme to preview</p>
-            <div className="overflow-hidden rounded-2xl border border-gray-200/80 bg-white shadow-2xl shadow-indigo-500/10">
-              <div className="flex items-center gap-1.5 border-b border-gray-100 bg-linear-to-r from-gray-50 to-gray-100 px-4 py-3">
-                <div className="h-2.5 w-2.5 rounded-full bg-red-300" />
-                <div className="h-2.5 w-2.5 rounded-full bg-amber-300" />
-                <div className="h-2.5 w-2.5 rounded-full bg-green-300" />
-                <div className="ml-4 h-4 w-48 rounded bg-gray-200" />
-              </div>
-              <div className="grid grid-cols-2 gap-0 sm:grid-cols-4">
-                {/* Classic theme preview */}
-                <Link href="/demo/classic" className="block border-r border-b border-gray-100 p-4 transition-all hover:bg-indigo-50/50 hover:scale-[1.02] sm:border-b-0">
-                  <div
-                    className="rounded-lg p-3"
-                    style={{ backgroundColor: "#FDFBF7" }}
-                  >
-                    <div className="text-center">
-                      <div className="text-[10px] font-bold" style={{ fontFamily: "serif", color: "#2C2420" }}>Classic</div>
-                      <div className="mx-auto mt-2 h-1 w-6 rounded" style={{ backgroundColor: "#8B4513" }} />
-                      <div className="mt-2 space-y-1.5">
-                        <div className="h-1 rounded bg-gray-200" />
-                        <div className="mx-auto h-1 w-3/4 rounded bg-gray-200" />
-                        <div className="h-1 rounded bg-gray-200" />
-                      </div>
-                    </div>
+          {/* Theme preview badges */}
+          <div id="themes" className="mx-auto mt-16 max-w-4xl">
+            <p className="mb-6 text-center text-sm font-medium text-gray-500 uppercase tracking-wider">
+              10 themes — click any to preview live
+            </p>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
+              {/* Classic */}
+              <Link href="/demo/classic" className="group relative overflow-hidden rounded-2xl border border-gray-200 transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-indigo-500/10 hover:border-indigo-200" style={{ backgroundColor: "#FDFBF7" }}>
+                <div className="p-4">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="h-2 w-2 rounded-full" style={{ backgroundColor: "#8B4513" }} />
+                    <span className="text-xs font-semibold" style={{ color: "#2C2420", fontFamily: "Georgia, serif" }}>Classic</span>
                   </div>
-                </Link>
-                {/* Modern theme preview */}
-                <Link href="/demo/modern" className="block border-b border-gray-100 p-4 transition-all hover:bg-indigo-50/50 hover:scale-[1.02] sm:border-r sm:border-b-0">
-                  <div className="rounded-lg bg-white p-3 shadow-sm">
-                    <div className="text-center">
-                      <div className="text-[10px] font-bold text-gray-900">Modern</div>
-                      <div className="mx-auto mt-2 h-1 w-6 rounded bg-gray-900" />
-                      <div className="mt-2 space-y-1.5">
-                        <div className="h-1 rounded bg-gray-100" />
-                        <div className="mx-auto h-1 w-3/4 rounded bg-gray-100" />
-                        <div className="h-1 rounded bg-gray-100" />
-                      </div>
-                    </div>
+                  <div className="space-y-1.5">
+                    <div className="h-1.5 rounded-full w-full" style={{ backgroundColor: "#e8d9c8" }} />
+                    <div className="h-1.5 rounded-full w-4/5" style={{ backgroundColor: "#e8d9c8" }} />
+                    <div className="h-1.5 rounded-full w-3/5" style={{ backgroundColor: "#e8d9c8" }} />
                   </div>
-                </Link>
-                {/* Dark theme preview */}
-                <Link href="/demo/dark" className="block border-r border-gray-100 p-4 transition-all hover:bg-indigo-50/50 hover:scale-[1.02]">
-                  <div
-                    className="rounded-lg p-3"
-                    style={{ backgroundColor: "#0A0A0A" }}
-                  >
-                    <div className="text-center">
-                      <div className="text-[10px] font-bold" style={{ color: "#F5F5F5" }}>Dark</div>
-                      <div className="mx-auto mt-2 h-1 w-6 rounded" style={{ backgroundColor: "#C8A064" }} />
-                      <div className="mt-2 space-y-1.5">
-                        <div className="h-1 rounded" style={{ backgroundColor: "#1a1a1a" }} />
-                        <div className="mx-auto h-1 w-3/4 rounded" style={{ backgroundColor: "#1a1a1a" }} />
-                        <div className="h-1 rounded" style={{ backgroundColor: "#1a1a1a" }} />
-                      </div>
-                    </div>
+                  <div className="mt-3 h-0.5 w-full rounded-full" style={{ background: "linear-gradient(to right, transparent, #8B4513, transparent)" }} />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 py-2 text-center text-[10px] font-medium text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity bg-white/80">
+                  Preview →
+                </div>
+              </Link>
+
+              {/* Modern */}
+              <Link href="/demo/modern" className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-indigo-500/10 hover:border-indigo-200" style={{ boxShadow: "0 1px 8px rgba(0,0,0,0.06)" }}>
+                <div className="p-4">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="h-2 w-2 rounded-full bg-gray-900" />
+                    <span className="text-xs font-semibold text-gray-900" style={{ fontFamily: "system-ui" }}>Modern</span>
                   </div>
-                </Link>
-                {/* Bistro theme preview */}
-                <Link href="/demo/bistro" className="block p-4 transition-all hover:bg-indigo-50/50 hover:scale-[1.02]">
-                  <div
-                    className="rounded-lg p-3"
-                    style={{ backgroundColor: "#F5EDE3" }}
-                  >
-                    <div className="text-center">
-                      <div className="text-[10px] font-bold italic" style={{ fontFamily: "serif", color: "#3D2E1E" }}>Bistro</div>
-                      <div className="mx-auto mt-2 h-1 w-6 rounded" style={{ backgroundColor: "#B8860B" }} />
-                      <div className="mt-2 space-y-1.5">
-                        <div className="h-1 rounded" style={{ backgroundColor: "#e8ddd0" }} />
-                        <div className="mx-auto h-1 w-3/4 rounded" style={{ backgroundColor: "#e8ddd0" }} />
-                        <div className="h-1 rounded" style={{ backgroundColor: "#e8ddd0" }} />
-                      </div>
-                    </div>
+                  <div className="space-y-1.5">
+                    <div className="h-1.5 rounded-full w-full bg-gray-100" />
+                    <div className="h-1.5 rounded-full w-4/5 bg-gray-100" />
+                    <div className="h-1.5 rounded-full w-3/5 bg-gray-100" />
                   </div>
-                </Link>
-              </div>
+                  <div className="mt-3 inline-flex items-center gap-1 rounded-full px-2 py-0.5" style={{ background: "rgba(17,24,39,0.07)" }}>
+                    <div className="h-1 w-1 rounded-full bg-gray-900" />
+                    <div className="h-1 w-6 rounded-full bg-gray-300" />
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 py-2 text-center text-[10px] font-medium text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity bg-white/80">
+                  Preview →
+                </div>
+              </Link>
+
+              {/* Dark */}
+              <Link href="/demo/dark" className="group relative overflow-hidden rounded-2xl border border-gray-800 transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-amber-500/10 hover:border-amber-700/40" style={{ backgroundColor: "#0A0A0A" }}>
+                <div className="p-4">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="h-2 w-2 rounded-full" style={{ backgroundColor: "#C8A064" }} />
+                    <span className="text-xs font-semibold" style={{ color: "#F5F5F5", fontFamily: "Georgia, serif" }}>Dark</span>
+                  </div>
+                  <div className="space-y-1.5">
+                    <div className="h-1.5 rounded-full w-full" style={{ backgroundColor: "#1a1a1a" }} />
+                    <div className="h-1.5 rounded-full w-4/5" style={{ backgroundColor: "#1a1a1a" }} />
+                    <div className="h-1.5 rounded-full w-3/5" style={{ backgroundColor: "#1a1a1a" }} />
+                  </div>
+                  <div className="mt-3 h-1 w-1 rounded-full" style={{ backgroundColor: "#C8A064", boxShadow: "0 0 6px #C8A064" }} />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 py-2 text-center text-[10px] font-medium opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: "#C8A064", background: "rgba(0,0,0,0.7)" }}>
+                  Preview →
+                </div>
+              </Link>
+
+              {/* Bistro */}
+              <Link href="/demo/bistro" className="group relative overflow-hidden rounded-2xl border border-amber-200/60 transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-amber-500/10 hover:border-amber-300" style={{ backgroundColor: "#F5EDE3" }}>
+                <div className="p-4">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="h-2 w-2 rounded-full" style={{ backgroundColor: "#B8860B" }} />
+                    <span className="text-xs font-semibold italic" style={{ color: "#3D2E1E", fontFamily: "Georgia, serif" }}>Bistro</span>
+                  </div>
+                  <div className="space-y-1.5">
+                    <div className="h-1.5 rounded-full w-full" style={{ backgroundColor: "#ddd0be" }} />
+                    <div className="h-1.5 rounded-full w-4/5" style={{ backgroundColor: "#ddd0be" }} />
+                    <div className="h-1.5 rounded-full w-3/5" style={{ backgroundColor: "#ddd0be" }} />
+                  </div>
+                  <div className="mt-3 flex items-center gap-1">
+                    <div className="h-px flex-1" style={{ background: "linear-gradient(to right, transparent, #B8860B60)" }} />
+                    <div className="text-[8px]" style={{ color: "#B8860B" }}>◆</div>
+                    <div className="h-px flex-1" style={{ background: "linear-gradient(to left, transparent, #B8860B60)" }} />
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 py-2 text-center text-[10px] font-medium text-amber-700 opacity-0 group-hover:opacity-100 transition-opacity bg-amber-50/80">
+                  Preview →
+                </div>
+              </Link>
+
+              {/* Nordic */}
+              <Link href="/demo/nordic" className="group relative overflow-hidden rounded-2xl border border-gray-200 transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-emerald-500/10 hover:border-emerald-200" style={{ backgroundColor: "#F7F5F2" }}>
+                <div className="p-4">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="h-2 w-2 rounded-sm" style={{ backgroundColor: "#2D6A4F" }} />
+                    <span className="text-xs font-semibold text-gray-800" style={{ fontFamily: "system-ui", letterSpacing: "-0.01em" }}>Nordic</span>
+                  </div>
+                  <div className="space-y-1.5">
+                    <div className="h-1.5 rounded-full w-full" style={{ backgroundColor: "#E8E5E0" }} />
+                    <div className="h-1.5 rounded-full w-4/5" style={{ backgroundColor: "#E8E5E0" }} />
+                    <div className="h-1.5 rounded-full w-3/5" style={{ backgroundColor: "#E8E5E0" }} />
+                  </div>
+                  <div className="mt-3 h-0.5 w-8 rounded-full" style={{ backgroundColor: "#2D6A4F" }} />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 py-2 text-center text-[10px] font-medium text-emerald-700 opacity-0 group-hover:opacity-100 transition-opacity bg-white/80">
+                  Preview →
+                </div>
+              </Link>
+
+              {/* Neon */}
+              <Link href="/demo/neon" className="group relative overflow-hidden rounded-2xl border transition-all hover:-translate-y-1 hover:shadow-lg" style={{ backgroundColor: "#07071A", borderColor: "#00FF9430" }}>
+                <div className="p-4">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="h-2 w-2 rounded-full" style={{ backgroundColor: "#00FF94", boxShadow: "0 0 6px #00FF94" }} />
+                    <span className="text-xs font-bold" style={{ color: "#00FF94", fontFamily: "system-ui", textShadow: "0 0 8px #00FF9460" }}>Neon</span>
+                  </div>
+                  <div className="space-y-1.5">
+                    <div className="h-1.5 rounded-full w-full" style={{ backgroundColor: "#0d0d25" }} />
+                    <div className="h-1.5 rounded-full w-4/5" style={{ backgroundColor: "#0d0d25" }} />
+                    <div className="h-1.5 rounded-full w-3/5" style={{ backgroundColor: "#0d0d25" }} />
+                  </div>
+                  <div className="mt-3 h-px w-full" style={{ background: "linear-gradient(to right, transparent, #00FF9440, transparent)" }} />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 py-2 text-center text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: "#00FF94", background: "rgba(7,7,26,0.8)" }}>
+                  Preview →
+                </div>
+              </Link>
+
+              {/* Rustic */}
+              <Link href="/demo/rustic" className="group relative overflow-hidden rounded-2xl border transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-900/20" style={{ backgroundColor: "#2E1F12", borderColor: "#8B3A2A40" }}>
+                <div className="p-4">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="h-2 w-2 rounded-full" style={{ backgroundColor: "#8B3A2A" }} />
+                    <span className="text-xs font-bold" style={{ color: "#F2E8D9", fontFamily: "Georgia, serif" }}>Rustic</span>
+                  </div>
+                  <div className="space-y-1.5">
+                    <div className="h-1.5 rounded-full w-full" style={{ backgroundColor: "#3d2a1a" }} />
+                    <div className="h-1.5 rounded-full w-4/5" style={{ backgroundColor: "#3d2a1a" }} />
+                    <div className="h-1.5 rounded-full w-3/5" style={{ backgroundColor: "#3d2a1a" }} />
+                  </div>
+                  <div className="mt-3 text-[10px]" style={{ color: "#8B3A2A40" }}>01  02  03</div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 py-2 text-center text-[10px] font-medium opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: "#F2E8D9", background: "rgba(46,31,18,0.85)" }}>
+                  Preview →
+                </div>
+              </Link>
+
+              {/* Zen */}
+              <Link href="/demo/zen" className="group relative overflow-hidden rounded-2xl border border-red-100/60 transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-red-500/10 hover:border-red-200" style={{ backgroundColor: "#FAF7F2" }}>
+                <div className="p-4">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="h-3 w-0.5 rounded-full" style={{ backgroundColor: "#C0392B" }} />
+                    <span className="text-xs font-semibold text-gray-800" style={{ fontFamily: "Georgia, serif" }}>Zen</span>
+                  </div>
+                  <div className="space-y-1.5">
+                    <div className="h-1.5 rounded-full w-full" style={{ backgroundColor: "#EBE5DC" }} />
+                    <div className="h-1.5 rounded-full w-4/5" style={{ backgroundColor: "#EBE5DC" }} />
+                    <div className="h-1.5 rounded-full w-3/5" style={{ backgroundColor: "#EBE5DC" }} />
+                  </div>
+                  <div className="mt-3 flex gap-1">
+                    {[0,1,2,3,4].map(i => (
+                      <div key={i} className="h-1 w-1 rounded-full" style={{ backgroundColor: "#C0392B", opacity: i % 2 === 0 ? 0.4 : 0.2, marginTop: i % 2 !== 0 ? 2 : 0 }} />
+                    ))}
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 py-2 text-center text-[10px] font-medium text-red-700 opacity-0 group-hover:opacity-100 transition-opacity bg-white/80">
+                  Preview →
+                </div>
+              </Link>
+
+              {/* Luxe */}
+              <Link href="/demo/luxe" className="group relative overflow-hidden rounded-2xl border transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-yellow-500/10" style={{ backgroundColor: "#0C0C0C", borderColor: "#C9A84C30" }}>
+                <div className="p-4">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="h-2 w-2" style={{ backgroundColor: "#C9A84C", transform: "rotate(45deg)" }} />
+                    <span className="text-xs font-normal tracking-widest uppercase" style={{ color: "#C9A84C", fontFamily: "Georgia, serif", fontSize: 9 }}>Luxe</span>
+                  </div>
+                  <div className="space-y-1.5">
+                    <div className="h-1.5 rounded-full w-full" style={{ backgroundColor: "#141414" }} />
+                    <div className="h-1.5 rounded-full w-4/5" style={{ backgroundColor: "#141414" }} />
+                    <div className="h-1.5 rounded-full w-3/5" style={{ backgroundColor: "#141414" }} />
+                  </div>
+                  <div className="mt-3 h-px w-full" style={{ background: "linear-gradient(to right, transparent, #C9A84C50, transparent)" }} />
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 py-2 text-center text-[10px] font-medium opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: "#C9A84C", background: "rgba(12,12,12,0.85)" }}>
+                  Preview →
+                </div>
+              </Link>
+
+              {/* Vibra */}
+              <Link href="/demo/vibra" className="group relative overflow-hidden rounded-2xl border border-orange-200 transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-500/15 hover:border-orange-300" style={{ backgroundColor: "#FFFAF5" }}>
+                <div className="p-4">
+                  <div className="h-5 rounded-md mb-3" style={{ background: "linear-gradient(135deg, #FF4D2E, #FF8C00)" }} />
+                  <div className="space-y-1.5">
+                    <div className="h-1.5 rounded-full w-full" style={{ backgroundColor: "#F0EBE3" }} />
+                    <div className="h-1.5 rounded-full w-4/5" style={{ backgroundColor: "#F0EBE3" }} />
+                    <div className="h-1.5 rounded-full w-3/5" style={{ backgroundColor: "#F0EBE3" }} />
+                  </div>
+                  <div className="mt-3 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[9px] font-bold text-white" style={{ background: "#FF4D2E" }}>
+                    &#9632; Vibra
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 py-2 text-center text-[10px] font-bold text-orange-600 opacity-0 group-hover:opacity-100 transition-opacity bg-orange-50/80">
+                  Preview →
+                </div>
+              </Link>
             </div>
           </div>
         </div>
@@ -517,7 +645,7 @@ export default function HomePage() {
             ))}
           </div>
           <p className="mt-8 text-center text-sm text-gray-500">
-            All plans include all 4 themes, QR code generation, multi-language
+            All plans include all 10 themes, QR code generation, multi-language
             support, and real-time updates.
           </p>
         </div>

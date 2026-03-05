@@ -14,6 +14,12 @@ import { ClassicTheme } from "@/components/menu/themes/ClassicTheme";
 import { ModernTheme } from "@/components/menu/themes/ModernTheme";
 import { DarkTheme } from "@/components/menu/themes/DarkTheme";
 import { BistroTheme } from "@/components/menu/themes/BistroTheme";
+import { NordicTheme } from "@/components/menu/themes/NordicTheme";
+import { NeonTheme } from "@/components/menu/themes/NeonTheme";
+import { RusticTheme } from "@/components/menu/themes/RusticTheme";
+import { ZenTheme } from "@/components/menu/themes/ZenTheme";
+import { LuxeTheme } from "@/components/menu/themes/LuxeTheme";
+import { VibraTheme } from "@/components/menu/themes/VibraTheme";
 import { LanguageSwitcher } from "@/components/menu/LanguageSwitcher";
 import { MenuFooter } from "@/components/menu/MenuFooter";
 import type { Metadata } from "next";
@@ -176,6 +182,12 @@ export default async function PublicMenuPage({
     modern: ModernTheme,
     dark: DarkTheme,
     bistro: BistroTheme,
+    nordic: NordicTheme,
+    neon: NeonTheme,
+    rustic: RusticTheme,
+    zen: ZenTheme,
+    luxe: LuxeTheme,
+    vibra: VibraTheme,
   }[tenant.themeId] || ModernTheme;
 
   // Structured data (JSON-LD) for Restaurant schema
