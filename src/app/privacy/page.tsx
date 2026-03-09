@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "qarta.app";
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://qarta.app";
+const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "menudan.com";
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "https://menudan.com";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",

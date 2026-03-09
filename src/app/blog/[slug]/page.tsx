@@ -8,7 +8,7 @@ import { ArticleContent } from "../_components/ArticleContent";
 import { RelatedArticles } from "../_components/RelatedArticles";
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
-const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "qarta.app";
+const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "menudan.com";
 
 export function generateStaticParams() {
   return articles.map((a) => ({ slug: a.slug }));

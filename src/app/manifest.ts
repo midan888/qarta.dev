@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "qarta.app";
+const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "menudan.com";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {

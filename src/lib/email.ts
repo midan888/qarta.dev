@@ -11,8 +11,8 @@ function getResend(): Resend | null {
 }
 
 const FROM =
-  process.env.EMAIL_FROM || "noreply@updates.qarta.app";
-const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "qarta.app";
+  process.env.EMAIL_FROM || "noreply@updates.menudan.com";
+const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "menudan.com";
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 
 function emailLayout(content: string): string {

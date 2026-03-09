@@ -51,7 +51,7 @@ export async function generateMetadata({
   }
 
   const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
-  const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "qarta.app";
+  const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "menudan.com";
 
   const title = tenant.name;
   const description =

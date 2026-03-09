@@ -1,4 +1,4 @@
-# CLAUDE.md — qarta.app
+# CLAUDE.md — menudan.com
 
 ## Project Overview
 

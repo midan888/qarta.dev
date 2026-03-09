@@ -15,7 +15,7 @@ import { LightboxPortal } from "@/components/menu/ImageLightbox";
 import type { Metadata } from "next";
 import "@/components/menu/themes/fonts.css";
 
-const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "qarta.app";
+const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "menudan.com";
 
 const THEME_MAP = {
   classic: ClassicTheme,

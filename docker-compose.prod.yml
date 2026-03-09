@@ -1,6 +1,6 @@
 services:
   app:
-    image: ghcr.io/midan888/qarta-dev:latest
+    image: ghcr.io/midan888/menudan.com:latest
     env_file: .env
     environment:
       - DATABASE_URL=postgresql://menuapp:${POSTGRES_PASSWORD}@db:5432/menuapp
