@@ -14,16 +14,16 @@ export function BlogFooter() {
               {APP_NAME}
             </span>
           </p>
-          <div className="flex items-center gap-4 text-sm text-gray-500">
-            <Link href="/blog" className="hover:text-gray-700">
-              {i18n.landing.footer.blog}
-            </Link>
-            <Link href="/privacy" className="hover:text-gray-700">
-              {i18n.landing.footer.privacy}
-            </Link>
-            <span>
-              &copy; {new Date().getFullYear()} {APP_NAME}
-            </span>
+          <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm text-gray-500">
+            <Link href="/features" className="hover:text-gray-700">{i18n.landing.nav.features}</Link>
+            <Link href="/pricing" className="hover:text-gray-700">{i18n.landing.nav.pricing}</Link>
+            <Link href="/themes" className="hover:text-gray-700">{i18n.landing.footer.themes}</Link>
+            <Link href="/blog" className="hover:text-gray-700">{i18n.landing.footer.blog}</Link>
+            <Link href="/about" className="hover:text-gray-700">{i18n.landing.footer.about}</Link>
+            <Link href="/contact" className="hover:text-gray-700">{i18n.landing.footer.contact}</Link>
+            <Link href="/privacy" className="hover:text-gray-700">{i18n.landing.footer.privacy}</Link>
+            <Link href="/terms" className="hover:text-gray-700">{i18n.landing.footer.terms}</Link>
+            <span>&copy; {new Date().getFullYear()} {APP_NAME}</span>
           </div>
         </div>
       </div>

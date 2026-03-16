@@ -186,12 +186,12 @@ export default function HomePage() {
             >
               {hero.cta}
             </Link>
-            <a
-              href="#how-it-works"
+            <Link
+              href="/how-it-works"
               className="w-full rounded-lg border border-gray-200 px-8 py-3.5 text-base font-medium text-gray-700 transition-colors hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-700 sm:w-auto"
             >
               {hero.secondaryCta}
-            </a>
+            </Link>
           </div>
 
           {/* Theme preview badges */}
@@ -625,19 +625,15 @@ export default function HomePage() {
                 {APP_NAME}
               </span>
             </p>
-            <div className="flex items-center gap-4 text-sm text-gray-500">
-              <Link href="/features" className="hover:text-gray-700">
-                {nav.features}
-              </Link>
-              <Link href="/pricing" className="hover:text-gray-700">
-                {nav.pricing}
-              </Link>
-              <Link href="/blog" className="hover:text-gray-700">
-                {footer.blog}
-              </Link>
-              <Link href="/privacy" className="hover:text-gray-700">
-                {footer.privacy}
-              </Link>
+            <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm text-gray-500">
+              <Link href="/features" className="hover:text-gray-700">{nav.features}</Link>
+              <Link href="/pricing" className="hover:text-gray-700">{nav.pricing}</Link>
+              <Link href="/themes" className="hover:text-gray-700">{footer.themes}</Link>
+              <Link href="/blog" className="hover:text-gray-700">{footer.blog}</Link>
+              <Link href="/about" className="hover:text-gray-700">{footer.about}</Link>
+              <Link href="/contact" className="hover:text-gray-700">{footer.contact}</Link>
+              <Link href="/privacy" className="hover:text-gray-700">{footer.privacy}</Link>
+              <Link href="/terms" className="hover:text-gray-700">{footer.terms}</Link>
               <span>&copy; {new Date().getFullYear()} {APP_NAME}</span>
             </div>
           </div>

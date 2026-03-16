@@ -107,6 +107,10 @@ const en = {
     footer: {
       blog: 'Blog',
       privacy: 'Privacy Policy',
+      about: 'About',
+      contact: 'Contact',
+      terms: 'Terms',
+      themes: 'Themes',
     },
   },
 
@@ -772,6 +776,130 @@ const en = {
       button: 'Create Your Menu — Free',
     },
     breadcrumbHome: 'Home',
+  },
+
+  // ── How It Works Page ──
+  howItWorksPage: {
+    metaTitle: 'How It Works — Create a Digital Menu in 3 Steps',
+    metaDescription: 'Upload a photo of your menu, pick a theme, and share your QR code. See how easy it is to create a digital restaurant menu with AI-powered extraction.',
+    badge: 'Simple setup',
+    title: 'From paper to digital in 5 minutes',
+    subtitle: 'No technical skills, no design experience, no long onboarding. Just three simple steps.',
+    steps: [
+      {
+        title: 'Upload your menu',
+        description: 'Take a photo of your paper menu or upload an existing image. Our AI reads the text and extracts every dish name, description, and price automatically. You can also enter items manually if you prefer.',
+        details: ['Works with any paper menu — printed, handwritten, or multi-column', 'Supports menus in multiple languages', 'AI extracts names, descriptions, prices, and categories', 'Review and edit results before saving'],
+      },
+      {
+        title: 'Pick a theme',
+        description: 'Choose from 10 professionally designed themes that match your restaurant\'s brand. Customize the accent color, and your menu is ready to impress.',
+        details: ['10 themes: Classic, Modern, Dark, Bistro, Nordic, Neon, Rustic, Zen, Luxe, Vibra', 'Every theme is mobile-first and optimized for smartphones', 'Customize your accent color to match your brand', 'Switch themes anytime — your content stays'],
+      },
+      {
+        title: 'Share your QR code',
+        description: 'Download your QR code in PNG or SVG, print it, and place it on tables. Your guests scan and see your menu instantly — no app needed.',
+        details: ['Download in PNG (for printing) or SVG (for designers)', 'Place on tables, at the entrance, on receipts, or business cards', 'Update your menu anytime — the QR code stays the same', 'Optional: use your own custom domain like menu.yourrestaurant.com'],
+      },
+    ],
+    cta: {
+      title: 'Ready to try it?',
+      subtitle: 'The whole process takes about 5 minutes. No credit card required.',
+      button: 'Create Your Menu — Free',
+    },
+    breadcrumbHome: 'Home',
+  },
+
+  // ── About Page ──
+  aboutPage: {
+    metaTitle: 'About — Digital Menus for Restaurants',
+    metaDescription: 'We build tools that help restaurants go digital. AI-powered menu creation, beautiful themes, and instant QR codes — all designed for restaurant owners.',
+    title: 'About',
+    heading: 'We help restaurants go digital',
+    paragraphs: [
+      '{appName} was built with one goal: make it ridiculously easy for any restaurant to create a beautiful digital menu. No agencies, no developers, no weeks of back-and-forth.',
+      'We noticed that most restaurants still rely on paper menus or outdated PDFs. The tools that existed were either too complicated, too expensive, or designed for tech-savvy users — not busy restaurant owners.',
+      'So we built something different. Upload a photo of your paper menu, and AI does the rest. Pick a theme, get a QR code, and you\'re live. The whole process takes about 5 minutes.',
+      'Today, {appName} offers 10 beautiful menu themes, AI-powered translation into 16 languages, real-time updates, custom domains, and everything a modern restaurant needs to serve guests better.',
+    ],
+    valuesTitle: 'What we believe',
+    values: [
+      { title: 'Simplicity first', description: 'If it takes more than 5 minutes, we\'re doing it wrong. Every feature we build must be usable without a tutorial.' },
+      { title: 'Design matters', description: 'Your menu is the first thing guests interact with. It should look as good as your food tastes.' },
+      { title: 'Built for restaurants', description: 'We don\'t build for "businesses in general." Every decision is made with restaurant owners in mind.' },
+    ],
+    breadcrumbHome: 'Home',
+  },
+
+  // ── Contact Page ──
+  contactPage: {
+    metaTitle: 'Contact Us — Get in Touch',
+    metaDescription: 'Have questions about creating your digital restaurant menu? Get in touch with our team. We\'re here to help.',
+    title: 'Contact us',
+    subtitle: 'Have a question, feedback, or need help getting started? We\'d love to hear from you.',
+    emailTitle: 'Email us',
+    emailDescription: 'For general inquiries, support, or partnership opportunities.',
+    responseTime: 'We typically respond within 24 hours.',
+    faqTitle: 'Common questions',
+    faqDescription: 'Check our',
+    faqLink: 'pricing FAQ',
+    faqSuffix: 'for answers to the most common questions about plans, features, and billing.',
+    breadcrumbHome: 'Home',
+  },
+
+  // ── Terms Page ──
+  termsPage: {
+    metaTitle: 'Terms of Service',
+    metaDescription: 'Terms of service for using our digital menu platform. Read about your rights, our responsibilities, and how we handle your data.',
+    title: 'Terms of Service',
+    lastUpdated: 'Last updated:',
+    lastUpdatedDate: 'March 1, 2026',
+    sections: [
+      {
+        title: '1. Acceptance of Terms',
+        content: 'By accessing or using {appName} ("Service"), you agree to be bound by these Terms of Service. If you do not agree to these terms, do not use the Service.',
+      },
+      {
+        title: '2. Description of Service',
+        content: '{appName} provides a digital menu creation platform for restaurants, including AI-powered menu extraction, QR code generation, theme customization, multi-language translation, and related features. The Service is available through our website and associated domains.',
+      },
+      {
+        title: '3. Account Registration',
+        content: 'To use certain features of the Service, you must create an account. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. You must provide accurate and complete information during registration.',
+      },
+      {
+        title: '4. Acceptable Use',
+        content: 'You agree to use the Service only for lawful purposes and in accordance with these Terms. You may not: (a) use the Service for any illegal activity; (b) upload content that infringes on intellectual property rights; (c) attempt to gain unauthorized access to the Service or its systems; (d) use the Service to distribute spam, malware, or harmful content; (e) interfere with the proper functioning of the Service.',
+      },
+      {
+        title: '5. Content Ownership',
+        content: 'You retain ownership of all content you upload to the Service, including menu items, descriptions, images, and translations. By uploading content, you grant {appName} a non-exclusive, worldwide license to host, display, and process your content solely for the purpose of providing the Service.',
+      },
+      {
+        title: '6. Subscription and Billing',
+        content: 'Certain features require a paid subscription. Prices are displayed on our pricing page and may change with prior notice. Subscriptions are billed monthly and renew automatically. You can cancel at any time from your dashboard. Refunds are handled on a case-by-case basis.',
+      },
+      {
+        title: '7. Service Availability',
+        content: 'We strive to maintain high availability of the Service but do not guarantee uninterrupted access. We may perform scheduled maintenance or updates that temporarily affect availability. We are not liable for any downtime or data loss.',
+      },
+      {
+        title: '8. Termination',
+        content: 'We may suspend or terminate your account if you violate these Terms. You may delete your account at any time from your dashboard settings. Upon termination, your data will be permanently deleted within 30 days.',
+      },
+      {
+        title: '9. Limitation of Liability',
+        content: '{appName} is provided "as is" without warranties of any kind. To the maximum extent permitted by law, we shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the Service.',
+      },
+      {
+        title: '10. Changes to Terms',
+        content: 'We may update these Terms from time to time. We will notify you of significant changes via email or through the Service. Continued use of the Service after changes constitutes acceptance of the new Terms.',
+      },
+      {
+        title: '11. Contact',
+        content: 'If you have questions about these Terms, please contact us at the email address provided on our contact page.',
+      },
+    ],
   },
 
   // ── Privacy ──
