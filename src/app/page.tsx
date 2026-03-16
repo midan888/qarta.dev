@@ -103,12 +103,12 @@ export default function HomePage() {
             >
               {nav.features}
             </a>
-            <a
-              href="#pricing"
+            <Link
+              href="/pricing"
               className="text-sm text-gray-600 transition-colors hover:text-indigo-600"
             >
               {nav.pricing}
-            </a>
+            </Link>
             <Link
               href="/blog"
               className="text-sm text-gray-600 transition-colors hover:text-indigo-600"
@@ -626,6 +626,9 @@ export default function HomePage() {
               </span>
             </p>
             <div className="flex items-center gap-4 text-sm text-gray-500">
+              <Link href="/pricing" className="hover:text-gray-700">
+                {nav.pricing}
+              </Link>
               <Link href="/blog" className="hover:text-gray-700">
                 {footer.blog}
               </Link>

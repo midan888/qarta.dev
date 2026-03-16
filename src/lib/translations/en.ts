@@ -504,6 +504,52 @@ const en = {
     breadcrumbHome: 'Home',
   },
 
+  // ── Pricing Page ──
+  pricingPage: {
+    metaTitle: 'Pricing — Digital Menu Plans for Restaurants',
+    metaDescription: 'Simple, transparent pricing for your restaurant\'s digital menu. Start free, upgrade when you need more menus, images, and features like custom domains.',
+    badge: 'Simple pricing',
+    title: 'Choose the right plan for your restaurant',
+    subtitle: 'Start free and upgrade as you grow. No hidden fees, no contracts.',
+    allPlansInclude: 'All plans include all 10 themes, QR code generation, multi-language support, and real-time menu updates.',
+    comingSoon: 'Coming Soon',
+    faq: {
+      title: 'Frequently asked questions',
+      items: [
+        {
+          question: 'Can I try it for free?',
+          answer: 'Yes! The Free plan lets you create 1 menu with up to 20 item images. No credit card required — sign up and start building your digital menu in minutes.',
+        },
+        {
+          question: 'What happens when I reach my plan limits?',
+          answer: 'You\'ll see a notification when you\'re close to your limits. You can upgrade to a higher plan at any time to unlock more menus, images, and features.',
+        },
+        {
+          question: 'Can I change plans later?',
+          answer: 'Absolutely. You can upgrade or downgrade your plan at any time from your dashboard. Changes take effect immediately.',
+        },
+        {
+          question: 'How does AI menu extraction work?',
+          answer: 'Simply take a photo of your paper menu and upload it. Our AI reads the text, extracts dish names, descriptions, and prices, and creates your digital menu automatically.',
+        },
+        {
+          question: 'Do I need technical skills?',
+          answer: 'Not at all. If you can take a photo and click a few buttons, you can create a beautiful digital menu. The whole process takes about 5 minutes.',
+        },
+        {
+          question: 'What is a custom domain?',
+          answer: 'Instead of using a menudan.com link, you can use your own domain like menu.yourrestaurant.com. We handle the HTTPS certificate automatically.',
+        },
+      ],
+    },
+    cta: {
+      title: 'Ready to get started?',
+      subtitle: 'Create your restaurant\'s digital menu in minutes. No credit card required.',
+      button: 'Create Your Menu — Free',
+    },
+    breadcrumbHome: 'Home',
+  },
+
   // ── Privacy ──
   privacy: {
     title: 'Privacy Policy',
