@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4f46e5"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+  <!-- Rounded square background -->
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <!-- Menu page shape -->
+  <rect x="136" y="96" width="240" height="320" rx="24" fill="white" opacity="0.95"/>
+  <!-- Menu lines -->
+  <rect x="180" y="160" width="120" height="12" rx="6" fill="#4f46e5" opacity="0.7"/>
+  <rect x="180" y="196" width="152" height="8" rx="4" fill="#4f46e5" opacity="0.25"/>
+  <rect x="180" y="220" width="132" height="8" rx="4" fill="#4f46e5" opacity="0.25"/>
+  <rect x="180" y="260" width="100" height="12" rx="6" fill="#7c3aed" opacity="0.7"/>
+  <rect x="180" y="296" width="152" height="8" rx="4" fill="#7c3aed" opacity="0.25"/>
+  <rect x="180" y="320" width="120" height="8" rx="4" fill="#7c3aed" opacity="0.25"/>
+  <!-- Fork icon (right side accent) -->
+  <g transform="translate(348, 108)" opacity="0.9">
+    <circle cx="40" cy="40" r="48" fill="#7c3aed"/>
+    <g transform="translate(22, 12)" fill="white">
+      <!-- Fork tines -->
+      <rect x="6" y="0" width="3.5" height="22" rx="1.75"/>
+      <rect x="14.5" y="0" width="3.5" height="22" rx="1.75"/>
+      <rect x="23" y="0" width="3.5" height="22" rx="1.75"/>
+      <!-- Fork neck -->
+      <path d="M6 22 C6 30 26.5 30 26.5 22" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+      <!-- Fork handle -->
+      <rect x="13.5" y="28" width="5.5" height="24" rx="2.75"/>
+    </g>
+  </g>
+</svg>

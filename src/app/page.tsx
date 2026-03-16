@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { Logo } from "@/components/ui/Logo";
 import { t } from "@/lib/translations";
 
 const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "menudan.com";
@@ -91,11 +92,7 @@ export default function HomePage() {
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-indigo-100/50 bg-white/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <span className="text-xl font-bold text-gray-900">
-            <span className="bg-linear-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
-              {APP_NAME}
-            </span>
-          </span>
+          <Logo href="/" size="lg" />
           <nav className="hidden items-center gap-6 sm:flex">
             <Link
               href="/features"
@@ -620,11 +617,7 @@ export default function HomePage() {
       <footer className="border-t border-gray-100 bg-gray-50 py-12">
         <div className="mx-auto max-w-6xl px-6">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-            <p className="text-sm font-bold">
-              <span className="bg-linear-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
-                {APP_NAME}
-              </span>
-            </p>
+            <Logo href="/" size="sm" />
             <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm text-gray-500">
               <Link href="/features" className="hover:text-gray-700">{nav.features}</Link>
               <Link href="/pricing" className="hover:text-gray-700">{nav.pricing}</Link>

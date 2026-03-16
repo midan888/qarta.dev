@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Logo } from "@/components/ui/Logo";
 import { t } from "@/lib/translations";
 
 const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "menudan.com";
@@ -9,11 +10,7 @@ export function BlogFooter() {
     <footer className="border-t border-gray-100 bg-gray-50 py-12">
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-          <p className="text-sm font-bold">
-            <span className="bg-linear-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
-              {APP_NAME}
-            </span>
-          </p>
+          <Logo href="/" size="sm" />
           <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm text-gray-500">
             <Link href="/features" className="hover:text-gray-700">{i18n.landing.nav.features}</Link>
             <Link href="/pricing" className="hover:text-gray-700">{i18n.landing.nav.pricing}</Link>
