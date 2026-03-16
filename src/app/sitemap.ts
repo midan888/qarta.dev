@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { tenants } from "@/lib/db/schema";
 import { articles } from "./blog/_data/articles";
 import { VALID_THEMES } from "@/lib/demo-data";
+import { t } from "@/lib/translations";
 
 export const dynamic = "force-dynamic";
 
@@ -11,12 +12,63 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Static pages — update this date when landing/auth page content changes
   const SITE_UPDATED = new Date("2026-03-16");
+  const i18n = t();
+  const featureSlugs = i18n.featuresPage.items.map((item) => item.slug);
+
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: SITE_UPDATED,
       changeFrequency: "weekly",
       priority: 1,
+    },
+    {
+      url: `${baseUrl}/pricing`,
+      lastModified: SITE_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/features`,
+      lastModified: SITE_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    ...featureSlugs.map((slug) => ({
+      url: `${baseUrl}/features/${slug}`,
+      lastModified: SITE_UPDATED,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+    {
+      url: `${baseUrl}/themes`,
+      lastModified: SITE_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/how-it-works`,
+      lastModified: SITE_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/about`,
+      lastModified: SITE_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/contact`,
+      lastModified: SITE_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/terms`,
+      lastModified: SITE_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.4,
     },
     {
       url: `${baseUrl}/privacy`,

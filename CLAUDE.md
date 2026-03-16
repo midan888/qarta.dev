@@ -28,6 +28,13 @@ Restaurant QR Menu SaaS. Full spec lives in [agent.md](agent.md) — read it for
 - `src/app/onboarding/` — Post-registration onboarding flow
 - `src/app/blog/` — Blog listing and article pages (static content via `_data/articles.ts`)
 - `src/app/demo/[theme]/` — Public theme demo page
+- `src/app/pricing/` — Pricing page with plans, FAQ, CTA
+- `src/app/features/` — Features index + `[slug]` individual feature pages (6 features)
+- `src/app/themes/` — Theme gallery page (all 10 themes)
+- `src/app/how-it-works/` — 3-step guide with HowTo JSON-LD
+- `src/app/about/` — About/mission page
+- `src/app/contact/` — Contact page (email, FAQ pointer)
+- `src/app/terms/` — Terms of service
 - `src/app/privacy/` — Privacy policy page
 - `src/components/menu/themes/` — 4 theme components (Classic, Modern, Dark, Bistro) + fonts.css
 - `src/components/menu/` — Shared menu components (LanguageSwitcher, MenuFooter)
