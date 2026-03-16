@@ -97,12 +97,12 @@ export default function HomePage() {
             </span>
           </span>
           <nav className="hidden items-center gap-6 sm:flex">
-            <a
-              href="#features"
+            <Link
+              href="/features"
               className="text-sm text-gray-600 transition-colors hover:text-indigo-600"
             >
               {nav.features}
-            </a>
+            </Link>
             <Link
               href="/pricing"
               className="text-sm text-gray-600 transition-colors hover:text-indigo-600"
@@ -626,6 +626,9 @@ export default function HomePage() {
               </span>
             </p>
             <div className="flex items-center gap-4 text-sm text-gray-500">
+              <Link href="/features" className="hover:text-gray-700">
+                {nav.features}
+              </Link>
               <Link href="/pricing" className="hover:text-gray-700">
                 {nav.pricing}
               </Link>

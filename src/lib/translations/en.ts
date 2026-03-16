@@ -504,6 +504,200 @@ const en = {
     breadcrumbHome: 'Home',
   },
 
+  // ── Features Pages ──
+  featuresPage: {
+    metaTitle: 'Features — Everything You Need for a Digital Menu',
+    metaDescription: 'AI menu extraction, 10 beautiful themes, QR codes, multi-language support, custom domains, and real-time updates. Everything your restaurant needs to go digital.',
+    badge: 'Features',
+    title: 'Everything you need to go paperless',
+    subtitle: 'Powerful features, simple interface. Built for restaurant owners who want to modernize without the hassle.',
+    cta: {
+      title: 'Ready to get started?',
+      subtitle: 'Create your restaurant\'s digital menu in minutes. No credit card required.',
+      button: 'Create Your Menu — Free',
+    },
+    breadcrumbHome: 'Home',
+    breadcrumbFeatures: 'Features',
+    items: [
+      {
+        slug: 'ai-menu-builder',
+        name: 'AI Menu Builder',
+        shortDescription: 'Snap a photo of your paper menu — our AI reads it and creates your digital menu automatically.',
+        metaTitle: 'AI Menu Builder — Create a Digital Menu from a Photo',
+        metaDescription: 'Upload a photo of your paper menu and let AI extract dish names, descriptions, and prices automatically. Your digital restaurant menu is ready in minutes.',
+        heroTitle: 'From paper menu to digital in minutes',
+        heroSubtitle: 'Take a photo of your existing menu. Our AI reads every item, description, and price — then builds your digital menu automatically. No typing required.',
+        sections: [
+          {
+            title: 'How it works',
+            items: [
+              'Take a clear photo of your paper menu or upload an existing image',
+              'Our AI analyzes the image and extracts all menu items, descriptions, and prices',
+              'Review the results, make any adjustments, and save — your digital menu is ready',
+            ],
+          },
+          {
+            title: 'Why restaurants love it',
+            items: [
+              'Save hours of manual data entry — what used to take an afternoon now takes 5 minutes',
+              'Handles multi-column layouts, different fonts, and handwritten additions',
+              'Works with menus in multiple languages — the AI understands context, not just text',
+              'Perfect accuracy for prices, currency symbols, and special characters',
+            ],
+          },
+        ],
+      },
+      {
+        slug: 'qr-code-menu',
+        name: 'QR Code Menus',
+        shortDescription: 'Download print-ready QR codes in PNG or SVG. Place them on tables and guests are one scan away.',
+        metaTitle: 'QR Code Menu for Restaurants — Generate & Download Free',
+        metaDescription: 'Generate beautiful QR codes for your restaurant menu. Download in PNG or SVG, print, and place on tables. Guests scan and see your menu instantly.',
+        heroTitle: 'One scan, your full menu',
+        heroSubtitle: 'Generate a QR code that links directly to your digital menu. Download in PNG or SVG, print it, place it on tables — and your guests are one scan away from browsing your offerings.',
+        sections: [
+          {
+            title: 'How it works',
+            items: [
+              'Your QR code is generated automatically when you create a menu',
+              'Download in PNG (for printing) or SVG (for designers) — any size, always sharp',
+              'Place on tables, at the entrance, on receipts, or anywhere your guests can see',
+            ],
+          },
+          {
+            title: 'Why restaurants love it',
+            items: [
+              'No app install required — works with every smartphone camera',
+              'Update your menu anytime and the QR code stays the same — no reprinting needed',
+              'Saves money on menu printing — especially useful for seasonal or daily specials',
+              'Hygienic contactless experience that guests have come to expect',
+            ],
+          },
+        ],
+      },
+      {
+        slug: 'multilingual-menu',
+        name: 'Multi-Language Menus',
+        shortDescription: 'AI-powered translation into 16 languages. International guests read the menu in their own language.',
+        metaTitle: 'Multilingual Restaurant Menu — AI Translation into 16 Languages',
+        metaDescription: 'Translate your restaurant menu into 16 languages with AI. Guests automatically see the menu in their preferred language. No manual translation needed.',
+        heroTitle: 'Speak every guest\'s language',
+        heroSubtitle: 'With one click, translate your entire menu into 16 languages using AI. International guests see your menu in their own language — automatically.',
+        sections: [
+          {
+            title: 'How it works',
+            items: [
+              'Select which languages you want to support from a list of 16 options',
+              'AI translates your entire menu — dish names, descriptions, and category titles',
+              'Guests see a language switcher on your menu and choose their preferred language',
+            ],
+          },
+          {
+            title: 'Why restaurants love it',
+            items: [
+              'No need to hire translators or manage multiple menu versions manually',
+              'AI understands culinary context — it knows the difference between "spring roll" and "bread roll"',
+              'Add a new dish once, and it\'s automatically available in all your enabled languages',
+              'Perfect for tourist areas, airports, hotels, and international neighborhoods',
+            ],
+          },
+        ],
+      },
+      {
+        slug: 'menu-themes',
+        name: 'Menu Themes',
+        shortDescription: '10 beautiful themes — Classic, Neon, Luxe, Nordic and more. Pick a vibe that matches your restaurant.',
+        metaTitle: 'Restaurant Menu Themes — 10 Beautiful Designs to Choose From',
+        metaDescription: 'Choose from 10 professionally designed menu themes: Classic, Modern, Dark, Bistro, Nordic, Neon, Rustic, Zen, Luxe, and Vibra. Match your restaurant\'s brand perfectly.',
+        heroTitle: 'A design for every restaurant',
+        heroSubtitle: 'Choose from 10 professionally designed themes that look stunning on any device. From elegant fine dining to bold street food — there\'s a perfect match for your brand.',
+        sections: [
+          {
+            title: 'Available themes',
+            items: [
+              'Classic — Editorial, warm, and sophisticated. Perfect for traditional restaurants',
+              'Modern — Clean, contemporary, and minimal. Great for cafes and fast-casual',
+              'Dark — Moody, bold, and premium. Ideal for cocktail bars and upscale dining',
+              'Bistro — Traditional, charming, and European. Made for bistros and brasseries',
+              'Nordic — Minimalist, Scandinavian, and airy. Fits health-focused and organic spots',
+              'Neon — Electric, cyberpunk, and bold. Built for late-night and street food',
+              'Rustic — Warm, farmhouse, and handcrafted. Perfect for farm-to-table restaurants',
+              'Zen — Japanese-inspired, calm, and refined. Ideal for sushi bars and tea houses',
+              'Luxe — Ultra-premium, black and gold. Made for fine dining and luxury venues',
+              'Vibra — Vibrant, street food, bold and fun. Great for taquerias and food trucks',
+            ],
+          },
+          {
+            title: 'Why restaurants love it',
+            items: [
+              'No design skills needed — just pick a theme and your menu looks professional instantly',
+              'Every theme is mobile-first and optimized for smartphone screens',
+              'Customize your accent color to match your brand identity',
+              'Switch themes anytime — your content stays, only the look changes',
+            ],
+          },
+        ],
+      },
+      {
+        slug: 'custom-domain',
+        name: 'Custom Domains',
+        shortDescription: 'Use your own domain like menu.yourrestaurant.com with automatic HTTPS.',
+        metaTitle: 'Custom Domain for Your Restaurant Menu — menu.yourrestaurant.com',
+        metaDescription: 'Use your own domain for your digital restaurant menu. Set up menu.yourrestaurant.com with automatic HTTPS. Professional branding, fast loading.',
+        heroTitle: 'Your menu, your domain',
+        heroSubtitle: 'Instead of a generic link, use your own domain like menu.yourrestaurant.com. We handle the HTTPS certificate automatically — it just works.',
+        sections: [
+          {
+            title: 'How it works',
+            items: [
+              'Add your domain in the dashboard settings (e.g. menu.yourrestaurant.com)',
+              'Point a CNAME record to our servers — we provide the exact value to use',
+              'We automatically provision an HTTPS certificate — your menu is live and secure',
+            ],
+          },
+          {
+            title: 'Why restaurants love it',
+            items: [
+              'Professional branding — guests see your domain, not a third-party link',
+              'Perfect for printing on business cards, flyers, and social media',
+              'Automatic HTTPS means your menu loads securely and Google ranks it higher',
+              'Available on Pro and Business plans',
+            ],
+          },
+        ],
+      },
+      {
+        slug: 'real-time-updates',
+        name: 'Real-Time Updates',
+        shortDescription: '86 an item or change prices instantly. Your digital menu updates in real time — no reprinting.',
+        metaTitle: 'Real-Time Menu Updates — Change Prices & Items Instantly',
+        metaDescription: 'Update your restaurant menu in real time. Change prices, 86 items, add daily specials — changes go live instantly. No reprinting, no waiting.',
+        heroTitle: 'Change anything, anytime',
+        heroSubtitle: 'Sold out of the salmon? Price change on wine? New daily special? Update your digital menu in seconds and every guest sees the change instantly.',
+        sections: [
+          {
+            title: 'What you can update instantly',
+            items: [
+              'Mark items as unavailable with a single toggle — guests see it immediately',
+              'Change prices, descriptions, or images and save — updates are live in seconds',
+              'Add new items or categories on the fly, even during service',
+              'Reorder categories and items with drag-and-drop — the menu rearranges instantly',
+            ],
+          },
+          {
+            title: 'Why restaurants love it',
+            items: [
+              'No more crossing out items with a pen or reprinting menus for small changes',
+              'Run daily specials or happy hour pricing without any extra work',
+              'Perfect for seasonal menus — swap items in and out without starting from scratch',
+              'Manage everything from your phone or computer, even when you\'re away from the restaurant',
+            ],
+          },
+        ],
+      },
+    ],
+  },
+
   // ── Pricing Page ──
   pricingPage: {
     metaTitle: 'Pricing — Digital Menu Plans for Restaurants',
