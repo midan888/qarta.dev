@@ -504,6 +504,36 @@ const en = {
     breadcrumbHome: 'Home',
   },
 
+  // ── Themes Page ──
+  themesPage: {
+    metaTitle: 'Restaurant Menu Themes — 10 Beautiful Designs',
+    metaDescription: 'Browse 10 professionally designed restaurant menu themes. Classic, Modern, Dark, Bistro, Nordic, Neon, Rustic, Zen, Luxe, and Vibra. Preview each theme live.',
+    badge: '10 themes',
+    title: 'A theme for every restaurant',
+    subtitle: 'Each theme is mobile-first, fast-loading, and designed to make your menu look stunning. Pick one, customize the accent color, and you\'re done.',
+    previewButton: 'Preview live',
+    bestFor: 'Best for:',
+    cta: {
+      title: 'Find your perfect theme',
+      subtitle: 'Create your menu and try every theme for free. Switch anytime — your content stays, only the design changes.',
+      button: 'Create Your Menu — Free',
+    },
+    breadcrumbHome: 'Home',
+    breadcrumbThemes: 'Themes',
+    themes: [
+      { bestFor: 'Traditional restaurants, steakhouses, wine bars' },
+      { bestFor: 'Cafes, fast-casual, brunch spots' },
+      { bestFor: 'Cocktail bars, upscale dining, speakeasies' },
+      { bestFor: 'Bistros, brasseries, French & Italian restaurants' },
+      { bestFor: 'Health-focused, organic, Scandinavian restaurants' },
+      { bestFor: 'Late-night spots, street food, gaming cafes' },
+      { bestFor: 'Farm-to-table, BBQ, craft breweries' },
+      { bestFor: 'Sushi bars, ramen shops, tea houses' },
+      { bestFor: 'Fine dining, luxury hotels, premium venues' },
+      { bestFor: 'Taquerias, food trucks, poke bowls' },
+    ],
+  },
+
   // ── Features Pages ──
   featuresPage: {
     metaTitle: 'Features — Everything You Need for a Digital Menu',
